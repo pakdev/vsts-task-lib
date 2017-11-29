@@ -1617,13 +1617,17 @@ export class TestPublisher {
 
     public testRunner: string;
 
-    public publish(resultFiles, mergeResults, platform, config, runTitle, publishRunAttachments) {
+    public publish(resultFiles, mergeResults, failOnFailure, platform, config, runTitle, publishRunAttachments): boolean {
 
         var properties = <{ [key: string]: string }>{};
         properties['type'] = this.testRunner;
 
         if (mergeResults) {
             properties['mergeResults'] = mergeResults;
+        }
+
+        if (failOnFailure) {
+            properties['failOnFailure'] = failOnFailure;
         }
 
         if (platform) {
